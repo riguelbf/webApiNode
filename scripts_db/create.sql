@@ -1,0 +1,1 @@
+CREATE SCHEMA `rental_movie` DEFAULT CHARACTER SET latin1 ;

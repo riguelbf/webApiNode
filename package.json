@@ -1,0 +1,29 @@
+{
+  "name": "4all",
+  "version": "1.0.0",
+  "description": "web api with hapi js, node js and mysql database",
+  "main": "api.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/riguelbf/webApiNode.git"
+  },
+  "keywords": [
+    "web",
+    "api",
+    "node",
+    "js",
+    "rest"
+  ],
+  "author": "Riguel Figueiro",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/riguelbf/webApiNode/issues"
+  },
+  "homepage": "https://github.com/riguelbf/webApiNode#readme"
+}
