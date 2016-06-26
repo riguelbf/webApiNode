@@ -7,7 +7,8 @@
     "test": "test"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "babel-node api.js"
   },
   "repository": {
     "type": "git",
@@ -25,5 +26,17 @@
   "bugs": {
     "url": "https://github.com/riguelbf/webApiNode/issues"
   },
-  "homepage": "https://github.com/riguelbf/webApiNode#readme"
+  "homepage": "https://github.com/riguelbf/webApiNode#readme",
+  "dependencies": {
+    "babel-eslint": "^6.1.0",
+    "babel-preset-es2015": "^6.9.0",
+    "babel-register": "^6.9.0",
+    "hapi": "^13.4.1",
+    "hapi-auth-basic": "^4.2.0",
+    "mysql": "^2.11.1"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.10.1",
+    "babel-eslint": "^6.1.0"
+  }
 }
