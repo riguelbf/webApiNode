@@ -1,5 +1,8 @@
 import CustomerRoute from './customerRoute.js';
 
+/**
+ * Responsible for providing all routes
+ */
 class RoutesApi {
 
     constructor() {

@@ -6,10 +6,18 @@ const CODE_UNAUTHORIZED = 401;
 const CODE_NOT_FOUND = 404;
 const CODE_INTERNAL_SERVER_ERROR = 500;
 
+/**
+ * Private method for exceptions
+ * @param reply - request in
+ * @param error - exception
+ */
 function error(reply, error) {
     reply(Hapi.error.badImplementation(err));
 }
 
+/**
+ * Assistant answers the requests 
+ */
 class ReplyHelper {
     constructor(request, reply) {
         this.request = request;

@@ -1,5 +1,9 @@
 import Joi from 'joi';
 
+
+/**
+ * Model for validate all instances
+ */
 class ModelBase {
 
     validate(model, schema) {
