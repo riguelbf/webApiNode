@@ -3,7 +3,6 @@
  */
 import Constants from './src/config/constants.js';
 import Hapi from 'hapi';
-//import DbConnection from './src/repository/dbConnection.js';
 import ManageAuth from './src/middleware/manageAuth.js';
 import BasicAuth from 'hapi-auth-basic';
 import RoutesApi from './src/routes/routesApiRoute.js';
@@ -25,33 +24,40 @@ server.connection({
 });
 
 /**
- * Manage authentication user in api
+ * Register operations in server instance
  */
-// server.pack.require('hapi-auth-basic', function (err) {
-//     server.auth.strategy('simple', 'basic', true, {
-//         validateFunc: new ManageAuth()
-//     });
-// });
+server.register(BasicAuth, (error) => {
+    if (error) {
+        throw error;
+    }
 
-/**
- * Manage request api
- */
-// server.ext('onRequest', function (request, next) {
-//     request.plugins.createControllerParams = function (requestParams) {
-//         var params = Object.create(requestParams);
-//         params.userId = request.auth.credentials.userId;
-//         return params;
-//     };
-//     next();
-// });
+    /**
+     * Register authenticate mode
+     */
+    server.auth.strategy('simple', 'basic', true, {
+        validateFunc: new ManageAuth().authentication
+    });
 
-/**
- *  Add all the routes within the routes folder
- * */
-let routes = new RoutesApi();
-routes.forEach(function (route) {
-    route.forEach(function (index) {
-        server.route(index);
+    /**
+     *  Add all the routes within the routes folder
+     * */
+    let routes = new RoutesApi();
+    routes.forEach(function (route) {
+        route.forEach(function (index) {
+            server.route(index);
+        });
+    });
+
+    /**
+     * Manage request api
+     */
+    server.ext('onRequest', function (request, next) {
+        request.plugins.createControllerParams = function (requestParams) {
+            var params = Object.create(requestParams);
+            params.userId = request.auth.credentials.userId;
+            return params;
+        };
+        next();
     });
 });
 
