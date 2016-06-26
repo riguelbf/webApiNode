@@ -2,6 +2,10 @@ const env = process.env.NODE_ENV || 'development';
 var dbContants = null;
 var appConstants = null;
 
+/**
+ * Class with the properties of connection and application of api
+ * @constructor null 
+ */
 class Constants {
 
     constructor() {
@@ -11,6 +15,9 @@ class Constants {
         return this.build();
     }
 
+    /**
+     * Build object with properties of api 
+     */
     build() {
         return {
             application: {
@@ -31,6 +38,9 @@ class Constants {
         };
     }
 
+    /**
+     * It provides the database connection properties
+     */
     getDatabaseConfig() {
         return {
             'production': {
@@ -54,6 +64,9 @@ class Constants {
         };
     }
 
+    /**
+     * It provides the application properties
+     */
     getApplicationConfig() {
         return {
             'production': {

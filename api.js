@@ -1,6 +1,11 @@
+/**
+ * Start the server for api
+ */
 import Constants from './src/config/constants.js';
 import Hapi from 'hapi' ;
-//var basicAuth = require('./src/middleware/basic-auth');
+import DbConnection from './src/repository/dbConnection.js';
+import ManageAuth from '.src/middleware/manageAuth.js';
+
 //var routes = require('./src/routes');
 
 var options = {
@@ -20,12 +25,18 @@ server.connection({
     host: constantsConfig.application.host
 });
 
-// server.pack.require('hapi-auth-basic', function (err) {
-// 	server.auth.strategy('simple', 'basic', true, {
-// 		validateFunc: basicAuth
-// 	});
-// });
+/**
+ * Manage authentication user in api
+ */
+server.pack.require('hapi-auth-basic', function (err) {
+    server.auth.strategy('simple', 'basic', true, {
+        validateFunc: new ManageAuth()
+    });
+});
 
+/**
+ * Manage request api
+ */
 server.ext('onRequest', function (request, next) {
     request.plugins.createControllerParams = function (requestParams) {
         var params = Object.create(requestParams);
@@ -35,12 +46,16 @@ server.ext('onRequest', function (request, next) {
     next();
 });
 
-// Add all the routes within the routes folder
+/**
+ *  Add all the routes within the routes folder
+ * */
 // if (routes) {
 //     for (var route in routes) {
 //         server.route(routes[route]);
 //     }
 // }
+
+var conenction = new DbConnection().createConnect();
 
 module.exports = server;
 

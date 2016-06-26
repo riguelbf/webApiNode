@@ -1,19 +1,19 @@
 import MySql from 'mysql';
-import Constants from './src/config/constants.js';
+import Constants from '../config/constants.js';
 
-let internals = {};
-let externals = {};
 let options = {
     multipleStatements: true
 };
 
-let dataBaseConfiguration = new Constants().get
+let dataBaseConfiguration = new Constants().database;
 
-Object.assign(options, constants.database);
+Object.assign(options, dataBaseConfiguration);
 
 var pool = MySql.createPool(options);
-internals.pool = pool;
 
+/**
+ * Class the communication database of api
+ */
 class DbConnection {
 
     createConnect(connectHandler) {
@@ -22,11 +22,14 @@ class DbConnection {
             return connectHandler(null, connection);
         });
     }
-
+/**
+ * Execute query in database
+ * @param {params} params - the parameter necessary for executing in database 
+ */
     executeQuery(params) {
-        var sql = params.sql;
-        var values = params.values;
-        var queryHandler = params.callback;
+        let sql = params.sql;
+        let values = params.values;
+        let queryHandler = params.callback;
         this.createConnect(function (err, connection) {
             if (err) return queryHandler(err, null);
             connection.query(sql, values, function (err, rows, fields) {
