@@ -10,13 +10,15 @@ class CustomerRoute {
     }
 
     routes() {
+
+        const controller = new CustomerController();
         return [
             {
                 method: 'POST',
                 path: '/user/{user}',
                 config: {
-                    handler: userController.findByID,
-                    validate: taskValidate.findByID
+                    handler: controller.login,
+                    validate: null
                 }
             }
         ]

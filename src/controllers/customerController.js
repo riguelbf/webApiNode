@@ -1,6 +1,6 @@
 import Hapi from 'hapi';
 import CustomerRepository from '../repository/customerRepository.js';
-import ReplyHelper from 'helper/replyHelper.js';
+import ReplyHelper from './helper/replyHelper.js';
 
 class CustomerController {
 

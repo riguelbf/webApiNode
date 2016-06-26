@@ -1,4 +1,4 @@
-import DbConnection from 'dbConnection.js';
+import DbConnection from './dbConnection.js';
 
 /**
  *  Class responsible for the persistence and search customer data
