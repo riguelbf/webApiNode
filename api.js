@@ -1,11 +1,5 @@
-require('babel-register')({
-  presets: ['es2015'],
-  extensions: [".js"]
-});
-
-var Hapi = require('hapi');
-var constants = require('./src/config/constants.js');
-
+import Constants from './src/config/constants.js';
+import Hapi from 'hapi' ;
 //var basicAuth = require('./src/middleware/basic-auth');
 //var routes = require('./src/routes');
 
@@ -17,13 +11,13 @@ var options = {
     }
 };
 
-var host = 'htpp://localhost';//constants.application['host'];
-var port = 3030; //constants.application['port'];
+var constantsConfig = new Constants();
 var server = new Hapi.Server();
+ 
 
 server.connection({
-    port: port
-    //host: host
+    port: constantsConfig.application.port,
+    host: constantsConfig.application.host
 });
 
 // server.pack.require('hapi-auth-basic', function (err) {
@@ -34,7 +28,7 @@ server.connection({
 
 server.ext('onRequest', function (request, next) {
     request.plugins.createControllerParams = function (requestParams) {
-        var params = _.clone(requestParams);
+        var params = Object.create(requestParams);
         params.userId = request.auth.credentials.userId;
         return params;
     };
@@ -55,6 +49,6 @@ if (process.env.NODE_ENV !== 'test') {
         if (error) {
             throw error;
         }
-        console.log('Server running in port #' + port);
+        console.log('Server running in port #' + constantsConfig.application.port);
     });
 }
