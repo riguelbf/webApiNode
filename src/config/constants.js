@@ -49,13 +49,15 @@ class Constants {
                 'database': 'database_production'
             },
             'development': {
-                'host': '127.0.0.1:3306',
-                'user': 'root',
-                'password': '',
+                'host': 'localhost',
+                'port': '3306',
+                'user': 'root4All',
+                'password': '000999',
                 'database': 'rental_movie_4All'
             },
             'test': {
                 'host': 'localhost',
+                'port': '3306',
                 'user': process.env.DB_TEST_USER,
                 'password': process.env.DB_TEST_PASS,
                 'database': 'database_test'

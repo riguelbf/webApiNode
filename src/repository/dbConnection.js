@@ -34,22 +34,22 @@ class DbConnection {
             if (err) return queryHandler(err, null);
 
             values !== undefined && null
-                ? execQueryWithParameter(sql, values, queryHandler)
-                : execQuery(sql, queryHandler);
+                ? execQueryWithParameter(sql, values, queryHandler, connection)
+                : execQuery(sql, queryHandler, connection);
         });
     }
 
 };
 
 
-function execQueryWithParameter(sql, values, queryHandler) {
+function execQueryWithParameter(sql, values, queryHandler, connection) {
     connection.query(sql, values, function (err, rows, fields) {
         queryHandler(err, rows);
         connection.release();
     });
 }
 
-function execQuery(sql, queryHandler) {
+function execQuery(sql, queryHandler, connection) {
     connection.query(sql, function (err, rows, fields) {
         queryHandler(err, rows);
         connection.release();
