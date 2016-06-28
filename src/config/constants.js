@@ -28,7 +28,6 @@ class Constants {
             database: {
                 host: dbContants[env]['host'],
                 user: dbContants[env]['user'],
-                port: dbContants[env]['port'],
                 password: dbContants[env]['password'],
                 database: dbContants[env]['database']
             },
@@ -50,9 +49,9 @@ class Constants {
                 'database': 'database_production'
             },
             'development': {
-                'host': 'localhost:3306',
+                'host': '127.0.0.1:3306',
                 'user': 'root',
-                'password': '300999',
+                'password': '',
                 'database': 'rental_movie_4All'
             },
             'test': {

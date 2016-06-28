@@ -1,4 +1,5 @@
 import Hapi from 'hapi';
+import Boom from 'boom';
 
 const CODE_NO_CONTENT = 204;
 const CODE_OK = 200;
@@ -11,8 +12,8 @@ const CODE_INTERNAL_SERVER_ERROR = 500;
  * @param reply - request in
  * @param error - exception
  */
-function error(reply, error) {
-    reply(Hapi.error.badImplementation(err));
+function responseError(reply, error) {
+    reply(Boom.badImplementation(error));
 }
 
 /**
@@ -25,7 +26,7 @@ class ReplyHelper {
     }
 
     findOne(error, data) {
-        if (error) return error(this.reply, error);
+        if (error) return responseError(this.reply, error);
 
         if (data[0]) {
             this.reply(data[0]).type('application/json');
@@ -35,13 +36,13 @@ class ReplyHelper {
     }
 
     findAll(error, data) {
-        if (error) return error(this.reply, error);
+        if (error) return responseError(this.reply, error);
         var response = this.reply(data).hold();
         response.type('application/json').send();
     }
 
     add(error, data) {
-        if (error) return error(this.reply, error);
+        if (error) return responseError(this.reply, error);
         this.reply().code(CODE_OK);
     }
 

@@ -22,23 +22,38 @@ class DbConnection {
             return connectHandler(null, connection);
         });
     }
-/**
- * Execute query in database
- * @param {params} params - the parameter necessary for executing in database 
- */
+    /**
+     * Execute query in database
+     * @param {params} params - the parameter necessary for executing in database 
+     */
     executeQuery(params) {
         let sql = params.sql;
         let values = params.values;
         let queryHandler = params.callback;
         this.createConnect(function (err, connection) {
             if (err) return queryHandler(err, null);
-            connection.query(sql, values, function (err, rows, fields) {
-                queryHandler(err, rows);
-                connection.release();
-            });
+
+            values !== undefined && null
+                ? execQueryWithParameter(sql, values, queryHandler)
+                : execQuery(sql, queryHandler);
         });
     }
 
 };
+
+
+function execQueryWithParameter(sql, values, queryHandler) {
+    connection.query(sql, values, function (err, rows, fields) {
+        queryHandler(err, rows);
+        connection.release();
+    });
+}
+
+function execQuery(sql, queryHandler) {
+    connection.query(sql, function (err, rows, fields) {
+        queryHandler(err, rows);
+        connection.release();
+    });
+}
 
 export default DbConnection;

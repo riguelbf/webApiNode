@@ -15,6 +15,17 @@ class CustomerController {
         });
     }
 
+    findAll(request, reply) {
+
+        var replyHelper = new ReplyHelper(request, reply);
+        var repository = new CustomerRepository();
+        //var params = request.plugins.createControllerParams(request.query);
+
+        repository.findAll(function (error, data) {
+            replyHelper.findAll(error, data);
+        });
+    }
+
 };
 
 export default CustomerController;

@@ -34,9 +34,9 @@ server.register(BasicAuth, (error) => {
     /**
      * Register authenticate mode
      */
-    server.auth.strategy('simple', 'basic', true, {
-        validateFunc: new ManageAuth().authentication
-    });
+    // server.auth.strategy('simple', 'basic', true, {
+    //     validateFunc: new ManageAuth().authentication
+    // });
 
     /**
      *  Add all the routes within the routes folder
@@ -47,18 +47,18 @@ server.register(BasicAuth, (error) => {
             server.route(index);
         });
     });
-
+    
     /**
      * Manage request api
      */
-    server.ext('onRequest', function (request, next) {
-        request.plugins.createControllerParams = function (requestParams) {
-            var params = Object.create(requestParams);
-            params.userId = request.auth.credentials.userId;
-            return params;
-        };
-        next();
-    });
+    // server.ext('onRequest', function (request, reply) {
+    //     request.plugins.createControllerParams = function (requestParams) {
+    //         var params = Object.create(requestParams);
+    //         params.userId = request.auth.credentials.userId;
+    //         return params;
+    //     };
+    //     reply();
+    // });
 });
 
 module.exports = server;

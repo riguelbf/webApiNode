@@ -20,6 +20,13 @@ class CustomerRoute {
                     handler: controller.login,
                     validate: null
                 }
+            },
+            {
+                method: 'GET',
+                path: '/user',
+                config: {
+                    handler: controller.findAll
+                }
             }
         ]
 

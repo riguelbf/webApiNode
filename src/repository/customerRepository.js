@@ -26,6 +26,26 @@ class CustomerRepository extends DbConnection {
 
         this.executeQuery(modelQuery);
     }
+    
+    findAll(callback){
+
+        var userName = "";
+        var password = "";
+
+        let params = [
+            userName,
+            password
+        ];
+
+        let query = "SELECT * FROM CUSTOMER";
+        let modelQuery = {
+            sql: query,
+            values: params,
+            callback: callback
+        };
+
+        this.executeQuery(modelQuery);
+    }
 
 };
 
