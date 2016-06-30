@@ -28,7 +28,16 @@ class MovieRoute {
                     handler: controller.findByTitle,
                     validate: null
                 }
+            },
+            {
+                method: 'GET',
+                path: '/movie/available',
+                config: {
+                    handler: controller.findAvailable,
+                    validate: null
+                }
             }
+
         ]
 
     }

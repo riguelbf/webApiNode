@@ -24,21 +24,40 @@ class MovieRepository extends DbConnection {
     }
 
     /**
-     * Get all movies by title
+     * Get all movies by title 
      * 
      * @param {string} movieName
+     * @param {function} callback
      */
     findByTitle(movieName, callback) {
 
         let query = "SELECT * FROM Movie WHERE title LIKE ?";
 
         let params = [
-            '%'+movieName+'%'
+            '%' + movieName + '%'
         ];
 
         let modelQuery = {
             sql: query,
             values: params,
+            callback: callback
+        };
+
+        this.executeQuery(modelQuery);
+    }
+
+    /**
+     * Search all movies available in rental movie
+     * 
+     * @param {function} callback
+     */
+    findAvailable(callback) {
+
+        let query = "SELECT *  FROM movie WHERE Copy_Number > (SELECT COUNT(idmovie) FROM rental WHERE delivery = 0 AND idmovie = movie.idMovie)";
+
+        let modelQuery = {
+            sql: query,
+            values: null,
             callback: callback
         };
 

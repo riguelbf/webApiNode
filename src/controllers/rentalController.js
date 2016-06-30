@@ -18,6 +18,16 @@ class RentalController {
         });
     }
 
+    delivery(request, reply) {
+
+        var replyHelper = new ReplyHelper(request, reply);
+        let repository = new MovieRepository();
+        let idRental = request.params.idRental;
+        repository.delivery(idRental, function (error, data) {
+            replyHelper.findAll(error, data);
+        });
+    }
+
 };
 
 export default RentalController;

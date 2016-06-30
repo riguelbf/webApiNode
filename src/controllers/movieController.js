@@ -28,6 +28,15 @@ class MovieController {
         });
     }
 
+    findAvailable(request, reply) {
+
+        var replyHelper = new ReplyHelper(request, reply);
+        let repository = new MovieRepository();
+        repository.findAvailable(function (error, data) {
+            replyHelper.findAll(error, data);
+        });
+    }
+
 };
 
 export default MovieController;
