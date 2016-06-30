@@ -15,7 +15,7 @@ class CustomerRoute {
         return [
             {
                 method: 'POST',
-                path: '/user/{user}',
+                path: '/login/{user}',
                 config: {
                     handler: controller.login,
                     validate: null
@@ -26,6 +26,13 @@ class CustomerRoute {
                 path: '/user',
                 config: {
                     handler: controller.findAll
+                }
+            },
+            {
+                method: 'POST',
+                path: '/user/add',
+                config: {
+                    handler: controller.add
                 }
             }
         ]

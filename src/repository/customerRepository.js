@@ -26,8 +26,8 @@ class CustomerRepository extends DbConnection {
 
         this.executeQuery(modelQuery);
     }
-    
-    findAll(callback){
+
+    findAll(callback) {
 
         var userName = "";
         var password = "";
@@ -38,6 +38,31 @@ class CustomerRepository extends DbConnection {
         ];
 
         let query = "SELECT * FROM CUSTOMER";
+        let modelQuery = {
+            sql: query,
+            values: params,
+            callback: callback
+        };
+
+        this.executeQuery(modelQuery);
+    }
+
+    /**
+     *  Add customer
+     * 
+     * @param {CustomerModel} model
+     * @param {function} callback
+     */
+    add(model, callback) {
+
+        let query = "INSERT INTO `rental_movie_4All`.`Customer` (`Name`, `Password`, `Email`) VALUES (?, ?, ?)";
+
+        let params = [
+            model.name,
+            model.password,
+            model.email
+        ];
+
         let modelQuery = {
             sql: query,
             values: params,

@@ -18,7 +18,7 @@ USE `rental_movie_4All` ;
 -- Table `rental_movie_4All`.`Movie`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `rental_movie_4All`.`Movie` (
-  `idMovie` INT NOT NULL,
+  `idMovie` INT NOT NULL AUTO_INCREMENT,
   `Title` VARCHAR(150) NOT NULL,
   `Director` VARCHAR(100) NOT NULL,
   `Copy_Number` INT NULL,
@@ -30,7 +30,7 @@ ENGINE = InnoDB;
 -- Table `rental_movie_4All`.`Customer`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `rental_movie_4All`.`Customer` (
-  `idCustomer` INT NOT NULL,
+  `idCustomer` INT NOT NULL AUTO_INCREMENT,
   `Name` VARCHAR(150) NOT NULL,
   `Password` VARCHAR(50) NOT NULL,
   `Email` VARCHAR(150) NOT NULL,
@@ -42,7 +42,7 @@ ENGINE = InnoDB;
 -- Table `rental_movie_4All`.`Rental`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `rental_movie_4All`.`Rental` (
-  `idRental` INT NOT NULL,
+  `idRental` INT NOT NULL AUTO_INCREMENT,
   `idMovie` INT NOT NULL,
   `idCustomer` INT NOT NULL,
   `Delivery` BIT(1) NULL,

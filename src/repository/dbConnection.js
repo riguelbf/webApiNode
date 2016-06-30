@@ -33,7 +33,7 @@ class DbConnection {
         this.createConnect(function (err, connection) {
             if (err) return queryHandler(err, null);
 
-            values !== undefined && null
+            values != undefined && values != null
                 ? execQueryWithParameter(sql, values, queryHandler, connection)
                 : execQuery(sql, queryHandler, connection);
         });

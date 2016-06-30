@@ -6,8 +6,11 @@ import Joi from 'joi';
  */
 class ModelBase {
 
-    validate(model, schema) {
-        Joi.validate(model, schema, function (err, value) { });  // err === null -> valid
+    validateModel(model, schema) {
+        return true;
+        Joi.validate('validation',schema, models, function (err, value) {
+            return err == null;
+        });  // err === null -> valid
     }
 
 };

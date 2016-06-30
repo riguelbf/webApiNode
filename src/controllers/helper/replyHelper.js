@@ -50,6 +50,10 @@ class ReplyHelper {
         if (error) return error(this.reply, error);
         this.reply().code(CODE_OK);
     }
+
+    error(messageError) {
+        return responseError(this.reply, messageError);
+    }
 };
 
 export default ReplyHelper;

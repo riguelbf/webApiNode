@@ -1,15 +1,15 @@
 import Joi from 'joi';
-import ModelBase from 'modelBase.js';
+import ModelBase from './modelBase.js';
 
 
 /**
  * Schema of customer table
  */
-const schema = Joi.object().keys({
+var schema = Joi.object().keys({
     idCustomer: Joi.number().integer(),
-    name: Joi.string().min(0).max(150),
-    password: Joi.string().min(0).max(50),
-    email: Joi.string().min(0).max(150)
+    name: Joi.string().min(1).max(50),
+    password: Joi.string().min(1).max(50),
+    email: Joi.string().email()
 });
 
 /**
@@ -17,18 +17,20 @@ const schema = Joi.object().keys({
  */
 class CustomerModel extends ModelBase {
 
-    constructor(id = 0, name, password, email) {
+    constructor(name, password, email, idCustomer = 0) {
+        super();
 
-        const model = {
-            idCustomer: id,
+        let model = {
+            idCustomer: idCustomer,
             name: name,
             password: password,
             email: email
         };
-
-        const isValid = validate(model, schema);
-
+ 
+        const isValid = super.validateModel(model, schema);
         if (isValid) return model;
+
+        return null;
     }
 };
 
