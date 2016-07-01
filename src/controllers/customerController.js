@@ -11,10 +11,9 @@ class CustomerController {
     login(request, reply) {
 
         let replyHelper = new ReplyHelper(request, reply);
-        let params = null;//request.plugin.createControllerParams(request.params);
         let repository = new CustomerRepository();
 
-        repository.login(params.userName, params.password, function (error, data) {
+        repository.login(request.payload.name, request.payload.password, function (error, data) {
             replyHelper.login(error, data);
         });
     }

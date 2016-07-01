@@ -20,6 +20,22 @@ class RentalRoute {
                     handler: controller.findAll,
                     validate: null
                 }
+            },
+            {
+                method: 'POST',
+                path: '/delivery',
+                config: {
+                    handler: controller.delivery,
+                    validate: null
+                }
+            },
+            {
+                method: 'POST',
+                path: '/rental',
+                config: {
+                    handler: controller.rental,
+                    validate: null
+                }
             }
         ]
 

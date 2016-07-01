@@ -26,7 +26,7 @@ class RentalRepository extends DbConnection {
     /**
      * Register rental movie by customer
      * 
-     * @param {object} model
+     * @param {object} model of rental
      * @param {function} callback
      */
     rental(model, callback) {
@@ -51,16 +51,20 @@ class RentalRepository extends DbConnection {
     /**
      * Register delivery movie
      * 
-     * @param {integer} idMovie
+     * @param {integer} idRental
      * @param {function} callback
      */
-    delivery(idMovie, callback) {
+    delivery(idRental, callback) {
 
-        let query = "UPDATE Rental SET `Delivery`='1' WHERE `idRental`=?";
+        let query = "UPDATE `rental` SET `Delivery`='1' WHERE `idRental`=?";
+
+        let params = [
+            "'"+idRental+"'"
+        ];
 
         let modelQuery = {
             sql: query,
-            values: idMovie,
+            values:  params,
             callback: callback
         };
 

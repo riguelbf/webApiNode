@@ -16,7 +16,7 @@ var schema = Joi.object().keys({
  */
 class RentalModel extends ModelBase {
 
-    constructor(idRental, idMovie, idCustomer, delivery = false) {
+    constructor(idMovie, idCustomer, delivery = false, idRental = 0) {
         super();
 
         let model = {

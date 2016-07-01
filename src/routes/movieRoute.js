@@ -17,6 +17,7 @@ class MovieRoute {
                 method: 'GET',
                 path: '/movie',
                 config: {
+                    // auth: 'simple',
                     handler: controller.findAll,
                     validate: null
                 }

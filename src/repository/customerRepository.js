@@ -12,12 +12,14 @@ class CustomerRepository extends DbConnection {
      * @param callback - function reply of request
      */
     login(userName, password, callback) {
+
         let params = [
-            userName,
-            password
+            "'" + userName + "'",
+            "'" + password + "'"
         ];
 
-        let query = "SELECT * FROM CUSTOMER";
+        let query = "SELECT * FROM CUSTOMER WHERE NAME = ? AND PASSWORD = ?";
+        
         let modelQuery = {
             sql: query,
             values: params,
