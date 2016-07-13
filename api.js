@@ -34,9 +34,9 @@ server.register(BasicAuth, (error) => {
     /**
      * Register authenticate mode
      */
-    server.auth.strategy('simple', 'basic', true, {
-        validateFunc: new ManageAuth().authentication
-    });
+    // server.auth.strategy('simple', 'basic', true, {
+    //     validateFunc: new ManageAuth().authentication
+    // });
 
     /**
      *  Add all the routes within the routes folder
