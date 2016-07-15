@@ -14,16 +14,7 @@ describe("Get all movies", function() {
       request.get(baseUrl + "/movie", function(error, response, body) {
         expect(response.statusCode).toBe(200);
         done();
-        console.log('teste');
       });
     });
-
-    // it("returns Hello World", function(done) {
-    //   request.get(base_url, function(error, response, body) {
-    //     expect(body).toBe("Hello World");
-    //     helloWorld.closeServer();
-    //     done();
-    //   });
-    // });
   });
 });

@@ -50,7 +50,7 @@ class Constants {
             },
             'development': {
                 'host': 'localhost',
-                'port': '3306',
+                'port': '3307',
                 'user': 'root4All',
                 'password': '000999',
                 'database': 'rental_movie_4All'
